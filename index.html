@@ -120,6 +120,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .link-button::before {
@@ -230,6 +231,12 @@
             animation: pulse 2s infinite;
         }
 
+        .status-indicator.inactive {
+            background: #95a5a6;
+            box-shadow: 0 0 0 3px rgba(149, 165, 166, 0.3);
+            animation: none;
+        }
+
         @keyframes pulse {
             0% {
                 box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
@@ -302,22 +309,22 @@
         <!-- Stats Section -->
         <div class="stats">
             <div class="stat-item">
-                <div class="stat-number" id="totalSiswa">240</div>
+                <div class="stat-number" id="totalSiswa">206</div>
                 <div class="stat-label">Total Siswa</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number" id="totalGuru">18</div>
+                <div class="stat-number" id="totalGuru">17</div>
                 <div class="stat-label">Total Guru</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number" id="kelas">12</div>
+                <div class="stat-number" id="kelas">8</div>
                 <div class="stat-label">Kelas</div>
             </div>
         </div>
 
         <!-- Links Container -->
         <div class="links-container">
-            <a href="#" class="link-button" onclick="openApp('input-ijin')">
+            <div class="link-button" onclick="openApp('input-ijin')">
                 <div class="status-indicator"></div>
                 <div class="link-icon">📝</div>
                 <div class="link-content">
@@ -325,9 +332,9 @@
                     <div class="link-subtitle">Form pengajuan ijin tidak masuk sekolah</div>
                 </div>
                 <div class="arrow">→</div>
-            </a>
+            </div>
 
-            <a href="#" class="link-button" onclick="openApp('monitor-kehadiran')">
+            <div class="link-button" onclick="openApp('monitor-kehadiran')">
                 <div class="status-indicator"></div>
                 <div class="link-icon">📊</div>
                 <div class="link-content">
@@ -335,9 +342,9 @@
                     <div class="link-subtitle">Pantau kehadiran siswa real-time</div>
                 </div>
                 <div class="arrow">→</div>
-            </a>
+            </div>
 
-            <a href="#" class="link-button" onclick="openApp('rekap-ijin')">
+            <div class="link-button" onclick="openApp('rekap-ijin')">
                 <div class="status-indicator"></div>
                 <div class="link-icon">📋</div>
                 <div class="link-content">
@@ -345,17 +352,17 @@
                     <div class="link-subtitle">Laporan dan rekap data ijin siswa</div>
                 </div>
                 <div class="arrow">→</div>
-            </a>
+            </div>
 
-            <a href="#" class="link-button" onclick="openApp('pengumuman')">
-                <div class="status-indicator"></div>
+            <div class="link-button" onclick="openApp('pengumuman')">
+                <div class="status-indicator inactive"></div>
                 <div class="link-icon">📢</div>
                 <div class="link-content">
                     <div class="link-title">Pengumuman</div>
                     <div class="link-subtitle">Info dan pengumuman sekolah</div>
                 </div>
                 <div class="arrow">→</div>
-            </a>
+            </div>
         </div>
 
         <!-- Footer -->
@@ -370,79 +377,35 @@
                 <a href="mailto:sdn2karangmangu@gmail.com" class="social-link" title="Email">
                     ✉️
                 </a>
-                <a href="#" class="social-link" title="Website" onclick="openApp('website')">
+                <a href="#" class="social-link" title="Website">
                     🌐
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Modal for App Preview -->
-    <div id="appModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000;">
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 20px; max-width: 500px; width: 90%; text-align: center;">
-            <h3 id="modalTitle" style="margin-bottom: 20px; color: #2c3e50;">Aplikasi Sedang Dibuka</h3>
-            <p id="modalContent" style="color: #7f8c8d; margin-bottom: 25px;">Silakan tunggu, aplikasi sedang dimuat...</p>
-            <div style="margin-bottom: 25px;">
-                <div style="width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-            </div>
-            <button onclick="closeModal()" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold;">Tutup</button>
-        </div>
-    </div>
-
-    <style>
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-
     <script>
-        // Data aplikasi
+        // Data aplikasi dengan URL yang benar
         const apps = {
             'input-ijin': {
                 title: 'Input Ijin Siswa',
                 description: 'Aplikasi untuk mengajukan ijin tidak masuk sekolah dengan mudah dan cepat.',
-                url: 'https://doniyan.github.io/input-ijin'
+                url: 'https://doniyan.github.io/input-ijin/'
             },
             'monitor-kehadiran': {
                 title: 'Monitor Kehadiran',
                 description: 'Pantau kehadiran siswa secara real-time dengan dashboard yang informatif.',
-                url: '#'
+                url: 'https://doniyan.github.io/filter-tanggal/'
             },
             'rekap-ijin': {
                 title: 'Rekap Ijin Siswa', 
                 description: 'Lihat laporan lengkap dan rekap data ijin siswa dengan filter yang lengkap.',
-                url: '#'
-            },
-            'data-siswa': {
-                title: 'Data Siswa',
-                description: 'Kelola data master siswa termasuk biodata dan informasi penting lainnya.',
-                url: '#'
-            },
-            'nilai-siswa': {
-                title: 'Nilai Siswa',
-                description: 'Input dan pantau nilai siswa untuk semua mata pelajaran.',
-                url: '#'
-            },
-            'jadwal-pelajaran': {
-                title: 'Jadwal Pelajaran',
-                description: 'Lihat jadwal pelajaran harian dan mingguan untuk setiap kelas.',
-                url: '#'
-            },
-            'komunikasi': {
-                title: 'Komunikasi Orangtua',
-                description: 'Platform komunikasi antara guru dan orangtua siswa.',
-                url: '#'
+                url: 'https://doniyan.github.io/ijin-siswa/'
             },
             'pengumuman': {
                 title: 'Pengumuman',
                 description: 'Info terbaru dan pengumuman penting dari sekolah.',
-                url: '#'
-            },
-            'website': {
-                title: 'Website Resmi',
-                description: 'Kunjungi website resmi SDN 2 Karangmangu untuk informasi lengkap.',
-                url: 'https://sdn2karangmangu.sch.id'
+                url: null
             }
         };
 
@@ -451,25 +414,14 @@
             const app = apps[appId];
             if (!app) return;
 
-            document.getElementById('modalTitle').textContent = app.title;
-            document.getElementById('modalContent').textContent = app.description;
-            document.getElementById('appModal').style.display = 'block';
+            // Jika ada URL, langsung buka di tab baru
+            if (app.url) {
+                window.open(app.url, '_blank');
+                return;
+            }
 
-            // Simulasi loading
-            setTimeout(() => {
-                closeModal();
-                // Di implementasi nyata, di sini akan redirect ke aplikasi yang sebenarnya
-                if (appId === 'website') {
-                    window.open(app.url, '_blank');
-                } else {
-                    alert(`Membuka aplikasi: ${app.title}\n\nDi implementasi nyata, ini akan membuka aplikasi terpisah yang ringan.`);
-                }
-            }, 2000);
-        }
-
-        // Fungsi untuk menutup modal
-        function closeModal() {
-            document.getElementById('appModal').style.display = 'none';
+            // Jika belum ada URL, tampilkan pesan
+            alert(`${app.title}\n\n${app.description}\n\nSegera hadir!`);
         }
 
         // Animasi counter untuk statistik
@@ -496,12 +448,10 @@
                 animateCounter('kelas', 8);
             }, 500);
 
-            // Add click tracking
+            // Add click effects
             const linkButtons = document.querySelectorAll('.link-button');
             linkButtons.forEach(button => {
                 button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
                     // Add click effect
                     this.style.transform = 'scale(0.98)';
                     setTimeout(() => {
@@ -522,37 +472,6 @@
                 });
             });
         });
-
-        // Close modal when clicking outside
-        document.getElementById('appModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Update stats periodically (simulasi)
-        setInterval(() => {
-            const siswaElement = document.getElementById('totalSiswa');
-            const currentValue = parseInt(siswaElement.textContent);
-            const variation = Math.floor(Math.random() * 5) - 2; // -2 to +2
-            const newValue = Math.max(235, Math.min(245, currentValue + variation));
-            
-            if (newValue !== currentValue) {
-                siswaElement.textContent = newValue;
-                siswaElement.style.color = '#e74c3c';
-                setTimeout(() => {
-                    siswaElement.style.color = '#2c3e50';
-                }, 500);
-            }
-        }, 30000); // Update every 30 seconds
     </script>
 </body>
-
 </html>
