@@ -1,7 +1,7 @@
 //v2
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open("absensi-cache"-v2).then(cache => {
+    caches.open("absensi-cache-v2").then(cache => {
       return cache.addAll([
         "./",
         "./index.html",
@@ -20,5 +20,6 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
 
 
