@@ -1,3 +1,4 @@
+//v2
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open("absensi-cache").then(cache => {
@@ -19,3 +20,4 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
