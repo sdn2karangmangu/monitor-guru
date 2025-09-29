@@ -75,6 +75,12 @@
             margin-bottom: 20px;
         }
 
+        .profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* gambar menyesuaikan tanpa melar */
+    border-radius: 50%; /* biar tetap bulat */
+}
         .stats {
             display: flex;
             justify-content: space-around;
@@ -300,7 +306,7 @@
         <!-- Profile Section -->
         <div class="profile-section">
             <div class="profile-image">
-                🏫
+                <img src="logo-sekolah.png" alt="Logo Sekolah">
             </div>
             <div class="profile-name">SDN 2 Karangmangu</div>
             <div class="profile-title">Sistem Manajemen Sekolah Digital</div>
@@ -475,3 +481,4 @@
     </script>
 </body>
 </html>
+
