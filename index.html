@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDN 2 Karangmangu - Link Bio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            animation: slideUp 0.8s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-section {
+            margin-bottom: 30px;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .profile-title {
+            color: #7f8c8d;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* gambar menyesuaikan tanpa melar */
+    border-radius: 50%; /* biar tetap bulat */
+}
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-button {
+            display: flex;
+            align-items: center;
+            padding: 18px 20px;
+            background: white;
+            border: 2px solid #ecf0f1;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .link-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .link-button:hover::before {
+            left: 100%;
+        }
+
+        .link-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .link-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            width: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .link-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .link-title {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .link-subtitle {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+
+        .link-button:hover .link-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .arrow {
+            font-size: 16px;
+            color: #bdc3c7;
+            transition: all 0.3s ease;
+        }
+
+        .link-button:hover .arrow {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .status-indicator {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #2ecc71;
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.inactive {
+            background: #95a5a6;
+            box-shadow: 0 0 0 3px rgba(149, 165, 166, 0.3);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(46, 204, 113, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            .container {
+                margin: 10px;
+                padding: 25px 20px;
+            }
+            
+            .profile-name {
+                font-size: 20px;
+            }
+            
+            .link-button {
+                padding: 15px 18px;
+            }
+            
+            .stats {
+                padding: 12px;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .container {
+                background: rgba(44, 62, 80, 0.95);
+            }
+            
+            .profile-name {
+                color: #ecf0f1;
+            }
+            
+            .link-button {
+                background: rgba(52, 73, 94, 0.8);
+                color: #ecf0f1;
+                border-color: #34495e;
+            }
+            
+            .stats {
+                background: rgba(52, 73, 94, 0.5);
+            }
+            
+            .stat-number {
+                color: #ecf0f1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <div class="profile-image">
+                <img src="logo-sekolah.png" alt="Logo Sekolah">
+            </div>
+            <div class="profile-name">SDN 2 Karangmangu</div>
+            <div class="profile-title">Sistem Manajemen Sekolah Digital</div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="totalSiswa">206</div>
+                <div class="stat-label">Total Siswa</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalGuru">16</div>
+                <div class="stat-label">Total Guru</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="kelas">8</div>
+                <div class="stat-label">Kelas</div>
+            </div>
+        </div>
+
+        <!-- Links Container -->
+        <div class="links-container">
+            <div class="link-button" onclick="openApp('input-ijin')">
+                <div class="status-indicator"></div>
+                <div class="link-icon">📝</div>
+                <div class="link-content">
+                    <div class="link-title">Input Ijin Siswa</div>
+                    <div class="link-subtitle">Form pengajuan ijin tidak masuk sekolah</div>
+                </div>
+                <div class="arrow">→</div>
+            </div>
+
+            <div class="link-button" onclick="openApp('monitor-kehadiran')">
+                <div class="status-indicator"></div>
+                <div class="link-icon">📊</div>
+                <div class="link-content">
+                    <div class="link-title">Monitor Kehadiran</div>
+                    <div class="link-subtitle">Pantau kehadiran siswa real-time</div>
+                </div>
+                <div class="arrow">→</div>
+            </div>
+
+            <div class="link-button" onclick="openApp('rekap-ijin')">
+                <div class="status-indicator"></div>
+                <div class="link-icon">📋</div>
+                <div class="link-content">
+                    <div class="link-title">Rekap Ijin Siswa</div>
+                    <div class="link-subtitle">Laporan dan rekap data ijin siswa</div>
+                </div>
+                <div class="arrow">→</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div>© 2025 SDN 2 Karangmangu</div>
+            <div>Sistem Digital Terintegrasi</div>
+            
+            <div class="social-links">
+                <a href="https://wa.me/6281234567890" class="social-link" title="WhatsApp">
+                    📱
+                </a>
+                <a href="mailto:sdn2karangmangu@gmail.com" class="social-link" title="Email">
+                    ✉️
+                </a>
+                <a href="#" class="social-link" title="Website">
+                    🌐
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data aplikasi dengan URL yang benar
+        const apps = {
+            'input-ijin': {
+                title: 'Input Ijin Siswa',
+                description: 'Aplikasi untuk mengajukan ijin tidak masuk sekolah dengan mudah dan cepat.',
+                url: 'https://doniyan.github.io/input-ijin/'
+            },
+            'monitor-kehadiran': {
+                title: 'Monitor Kehadiran',
+                description: 'Pantau kehadiran siswa secara real-time dengan dashboard yang informatif.',
+                url: 'https://doniyan.github.io/filter-tanggal/'
+            },
+            'rekap-ijin': {
+                title: 'Rekap Ijin Siswa', 
+                description: 'Lihat laporan lengkap dan rekap data ijin siswa dengan filter yang lengkap.',
+                url: 'https://doniyan.github.io/ijin-siswa/'
+            },
+            'pengumuman': {
+                title: 'Pengumuman',
+                description: 'Info terbaru dan pengumuman penting dari sekolah.',
+                url: null
+            }
+        };
+
+        // Fungsi untuk membuka aplikasi
+        function openApp(appId) {
+            const app = apps[appId];
+            if (!app) return;
+
+            // Jika ada URL, langsung buka di tab baru
+            if (app.url) {
+                window.open(app.url, '_blank');
+                return;
+            }
+
+            // Jika belum ada URL, tampilkan pesan
+            alert(`${app.title}\n\n${app.description}\n\nSegera hadir!`);
+        }
+
+        // Animasi counter untuk statistik
+        function animateCounter(elementId, target) {
+            const element = document.getElementById(elementId);
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 30);
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate counters
+            setTimeout(() => {
+                animateCounter('totalSiswa', 206);
+                animateCounter('totalGuru', 16);
+                animateCounter('kelas', 8);
+            }, 500);
+
+            // Add click effects
+            const linkButtons = document.querySelectorAll('.link-button');
+            linkButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Add click effect
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Add hover effects for social links
+            const socialLinks = document.querySelectorAll('.social-link');
+            socialLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.1)';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
