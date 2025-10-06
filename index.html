@@ -339,13 +339,21 @@
                 </div>
                 <div class="arrow">→</div>
             </div>
-
-            <div class="link-button" onclick="openApp('monitor-kehadiran')">
+ <div class="link-button" onclick="openApp('cek-kehadiran')">
+                <div class="status-indicator"></div>
+                <div class="link-icon">✅</div>
+                <div class="link-content">
+                    <div class="link-title">Cek Kehadiran Siswa Harian</div>
+                    <div class="link-subtitle">Cek Kehadiran siswa harian secara real-time</div>
+                </div>
+                <div class="arrow">→</div>
+            </div>gt
+            <div class="link-button" onclick="openApp('log-kehadiran')">
                 <div class="status-indicator"></div>
                 <div class="link-icon">📊</div>
                 <div class="link-content">
-                    <div class="link-title">Monitor Kehadiran</div>
-                    <div class="link-subtitle">Pantau kehadiran siswa real-time</div>
+                    <div class="link-title">Data Log Kehadiran</div>
+                    <div class="link-subtitle">Pantau kehadiran, ijin, sakit dll siswa real-time</div>
                 </div>
                 <div class="arrow">→</div>
             </div>
@@ -359,6 +367,7 @@
                 </div>
                 <div class="arrow">→</div>
             </div>
+            
         </div>
 
         <!-- Footer -->
@@ -388,7 +397,7 @@
                 description: 'Aplikasi untuk mengajukan ijin tidak masuk sekolah dengan mudah dan cepat.',
                 url: 'https://doniyan.github.io/input-ijin/'
             },
-            'monitor-kehadiran': {
+            'log-kehadiran': {
                 title: 'Monitor Kehadiran',
                 description: 'Pantau kehadiran siswa secara real-time dengan dashboard yang informatif.',
                 url: 'https://doniyan.github.io/filter-tanggal/'
@@ -398,10 +407,10 @@
                 description: 'Lihat laporan lengkap dan rekap data ijin siswa dengan filter yang lengkap.',
                 url: 'https://doniyan.github.io/ijin-siswa/'
             },
-            'pengumuman': {
-                title: 'Pengumuman',
-                description: 'Info terbaru dan pengumuman penting dari sekolah.',
-                url: null
+            'cek-kehadiran': {
+                title: 'cek-kehadiran',
+                description: 'Cek Kehadiran siswa harian secara real-time',
+                url: 'https://script.google.com/macros/s/AKfycbxCKTgBdI7RaGhBC6sjYGNorYpmBagUu9f8dXSP-7rpz1FcRof0h9oZj44STngJbsmm/exec'
             }
         };
 
@@ -471,6 +480,7 @@
     </script>
 </body>
 </html>
+
 
 
 
